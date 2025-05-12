@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aguanox</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #e0f7ef;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(90deg, #0078d7, #00b894);
+        color: #fff;
+        padding: 1rem 0;
+        text-align: center;
+      }
+
+      header img {
+        max-width: 150px;
+        height: auto;
+        display: block;
+        margin: 0 auto 0.5rem;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        background: #0078d7;
+        padding: 0.5rem 0;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 1rem;
+        font-weight: bold;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      main {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .hero {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        color: #0078d7;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: #555;
+      }
+
+      .about {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .about h2 {
+        color: #0078d7;
+        margin-bottom: 1rem;
+      }
+
+      .card-container {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        position: relative; /* Necessário para alinhar o conteúdo do card-info */
+        width: 300px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .card h3 {
+        color: #0078d7;
+        margin-bottom: 0.5rem;
+      }
+
+      .card p {
+        color: #555;
+      }
+
+      .card-info {
+        position: absolute;
+        top: 100%; /* Alinha o card-info logo abaixo do card */
+        left: 0; /* Alinha com o lado esquerdo do card */
+        width: 100%; /* Garante que o card-info tenha a mesma largura do card */
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 10;
+      }
+
+      .card:hover .card-info {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .questions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .card-question {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card-question:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-header {
+        padding: 1rem;
+        cursor: pointer;
+        background: #00b894;
+        color: #fff;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .card-header:hover {
+        background: #0078d7;
+      }
+
+      .card-content {
+        display: none;
+        padding: 1rem;
+        border-top: 1px solid #ddd;
+      }
+
+      .card-content p {
+        margin: 0;
+      }
+
+      footer {
+        background-color: #ddd;
+        padding: 10px 15px; /* Reduzido para aproximar os elementos */
+        border-top: 5px solid #bbb;
+        width: 100%;
+      }
+
+      footer .container {
+        max-width: 900px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between; /* Espaçamento reduzido entre colunas */
+        gap: 0.5rem; /* Reduzido para aproximar as colunas */
+        flex-wrap: wrap;
+        font-size: 14px;
+      }
+
+      .coluna {
+        flex: 1 1 200px;
+        min-width: 200px;
+        margin-bottom: 5px; /* Reduzido para aproximar os elementos */
+      }
+
+      .logo-texto {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .links, .contato {
+        font-weight: bold;
+        margin-bottom: 5px; /* Reduzido para aproximar os títulos */
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.5rem 0; /* Reduzido para aproximar os itens */
+      }
+
+      li {
+        margin-bottom: 0.3rem; /* Reduzido para aproximar os itens da lista */
+      }
+
+      .botoes-app img {
+        height: 35px; /* Mantido compacto */
+        margin-right: 5px; /* Reduzido para aproximar os botões */
+      }
+
+      .apoio-logos img {
+        max-height: 35px; /* Mantido compacto */
+        margin-right: 5px; /* Reduzido para aproximar os logos */
+      }
+
+      .rodape-copy {
+        background-color: #ddd;
+        border-top: 1px solid #bbb;
+        text-align: center;
+        padding: 5px; /* Reduzido para aproximar o rodapé de cópia */
+        font-size: 12px;
+        color: #555;
+        width: 100%;
+      }
+
+      .rodape-copy {
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: #555;
+        background-color: #ddd;
+        border-top: 1px solid #bbb;
+        max-width: 1000px;
+        margin: auto;
+      }
+    </style>
+    <script>
+      function toggleCardContent(event) {
+        const content = event.currentTarget.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <img src="aguanox.jpg.png" alt="Logo do Projeto Aguanox">
+    </header>
+    <nav></nav>
+    <main>
+      <section class="hero" id="descricao">
+        <h1>Bem-vindo ao Aguanox</h1>
+        <p>Um sistema inteligente para controle e monitoramento de irrigação, promovendo eficiência e sustentabilidade.</p>
+      </section>
+      <section class="about">
+        <h2>Sobre o Projeto</h2>
+        <p>
+          Este projeto propõe o desenvolvimento de um sistema inteligente de controle e monitoramento de irrigação, com suporte multiplataforma (desktop, web e mobile). A solução realiza o manejo automático da irrigação, fornecendo a quantidade exata de água necessária para a cultura, evitando o estresse hídrico das plantas e o desperdício de recursos, como água e energia elétrica.
+        </p>
+      </section>
+      <section class="card-container">
+        <div class="card">
+          <h3>Eficiência</h3>
+          <p>Reduza o desperdício de água e energia.</p>
+          <div class="card-info">
+            <p>Nosso sistema automatizado garante que a irrigação seja feita de forma eficiente, economizando recursos e aumentando a produtividade.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Controle Remoto</h3>
+          <p>Gerencie sua irrigação de qualquer lugar.</p>
+          <div class="card-info">
+            <p>Com acesso remoto, você pode monitorar e ajustar o sistema de irrigação diretamente do seu dispositivo móvel ou computador.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Sustentabilidade</h3>
+          <p>Contribua para um futuro sustentável.</p>
+          <div class="card-info">
+            <p>Adote práticas inteligentes que ajudam a preservar o meio ambiente enquanto aumentam a eficiência do cultivo.</p>
+          </div>
+        </div>
+      </section>
+      <section class="questions" id="perguntas">
+        <div class="card-question">
+          <div class="card-header" onclick="toggleCardContent(event)">
+            Por que nós desenvolvemos esse projeto? <span>&#9660;</span>
+          </div>
+          <div class="card-content">
+            <p>Para resolver o problema de desperdício de água e energia na irrigação, consequentemente tornando um cultivo mais eficiente.</p>
+          </div>
+        </div>
+        <div class="card-question">
+          <div class="card-header" onclick="toggleCardContent(event)">
+            Qual a finalidade do projeto? <span>&#9660;</span>
+          </div>
+          <div class="card-content">
+            <p>Criar um sistema para controle e monitoramento de irrigação com suporte multiplataforma para desktop, web e aplicativo móvel.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container">
+        <div class="coluna">
+          <div class="links">Links</div>
+          <ul>
+            <li>Início</li>
+            <li>Funções</li>
+            <li>FAQ</li>
+          </ul>
+        </div>
+
+        <div class="coluna">
+          <div class="contato">Contato</div>
+          <ul>
+            <li>aquanox.contato@gmail.com</li>
+            <li>Telefone para atendimento</li>
+            <li>Endereço da sede</li>
+          </ul>
+          <div class="links">Baixe o App</div>
+          <div class="botoes-app">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="App Store">
+          </div>
+        </div>
+
+        <div class="coluna">
+          <div class="links">Apoio</div>
+          <div class="apoio-logos">
+            <img src="SESI_logo_2024.png" alt="Logo SESI">
+            <img src="SENAI_logo_2024.png" alt="Logo SENAI">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="rodape-copy">
+      © 2025 Aquanox. Todos os direitos reservados.
+    </div>
+  </body>
+</html>
