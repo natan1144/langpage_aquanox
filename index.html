@@ -13,7 +13,7 @@
         line-height: 1.6;
         margin: 0;
         padding: 0;
-        background-color: #73A8CE; /* azul claro */
+        /* azul claro */
         color: #413027;            /* marrom escuro */
         text-align: justify;
       }
@@ -51,20 +51,22 @@
       }
 
       .hero h1 {
-        font-size: 3.2rem;      /* Maior destaque */
+        font-size: 5rem;      /* Maior destaque */
         color: #413027; /* marrom escuro */
         font-weight: bold;
-        letter-spacing: 2px;
-        margin-bottom: 0.2rem;  /* Aproxima a descrição */
-        text-shadow: 1px 2px 8px #73A8CE55; /* azul claro com transparência */
+        letter-spacing: 0px;
+        margin-bottom: 0px;
+        /* Aproxima a descrição */
+        /* azul claro com transparência */
       }
 
       .hero p {
-        font-size: 1.05rem;     /* Um pouco menor */
+        font-size: 1.5rem;     /* Um pouco menor */
         color: #555;
         margin-top: 0;          /* Grudado no h1 */
         margin-bottom: 0;
         font-weight: 500;
+        text-align: center;
       }
 
      .about {
@@ -149,6 +151,8 @@
       .card:hover .card-info {
         opacity: 1;
         visibility: visible;
+        width: auto; 
+        margin-top: 10px
       }
 
       /* Perguntas em coluna centralizada */
@@ -169,11 +173,12 @@
         border-radius: 5px;
         padding: 1rem;
         box-shadow: 0 2px 5px rgba(65, 48, 39, 0.1); /* marrom escuro com opacidade */
-        text-align: center;
+        text-align: justify;
         width: 1000px;
         max-width: 1000px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
+     
 
       .card-header {
         padding: 1rem;
@@ -260,13 +265,13 @@
 
 
       .rodape-copy {
-        background: linear-gradient(90deg, #413027 0%, #73A8CE 100%);
+        
         padding: 5px;
         font-size: 12px;
         color: #fff;
         width: 100%;
         text-align: center;
-        border-top: 1px solid #73A8CE;
+       
         max-width: 1000px;
         margin: auto;
       }
@@ -314,7 +319,10 @@
     <header style="background: #413027; color: #fff; padding: 2rem 0; text-align: center;">
       <div style="display: flex; justify-content: center; align-items: center; gap: 0;">
         <img src="1000144886.png" alt="Logo do Projeto Aguanox" style="height: 250px; max-width: 300px;">
-        <img src="1000145312.png" alt="AQUANOX logo" style="height: 250px; max-width: 300px; margin-left: 0;">
+        <label class="logo-texto" style="font-size: 100px; font-weight: bold; color: #fff;">AQUANOX</label>
+        <img src="derrubar.png" alt="Logo do Projeto Aguanox" style="height: 100px; max-width: 100px;">
+        
+   
       </div>
     </header>
     <nav></nav>
@@ -324,7 +332,7 @@
           <p style="margin-top: 0; margin-bottom: 0; font-size: 1.05rem; color: #555; font-weight: 500;">
            <div style="
   width: 100%;
-  background: #73A8CE;
+
   padding: 24px 0 12px 0;
   text-align: center;
 ">
@@ -337,7 +345,7 @@
     text-shadow: 1px 2px 8px #41302722;
   ">
   <div class="about">
-    Aquanox
+    <h1>Aquanox</h1>
             <p>Um sistema inteligente para controle e monitoramento de irrigação, promovendo eficiência e sustentabilidade.
           </p>
           </div>
@@ -430,7 +438,7 @@ Essa ampla compatibilidade garante flexibilidade e facilidade de uso, independen
       </section>
     </main>
    <footer>
-  <div class="container" style="background: #413027; border-top: 5px solid #73A8CE; color: #fff; padding: 10px 15px;">
+  <div class="container" style="background: #413027;  color: #fff; padding: 10px 15px;">
     <!-- Logo Aguanox centralizado no rodapé -->
     <div style="width: 100%; display: flex; justify-content: center; margin-bottom: 10px;">
    
