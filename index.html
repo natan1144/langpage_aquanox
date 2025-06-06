@@ -380,6 +380,77 @@
     padding-right: 10px;
   }
 }
+
+.carousel-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 24px auto 32px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel img {
+  width: 100%;
+  max-height: 600px; /* aumente este valor para preencher mais o container */
+  min-height: 320px; /* opcional: garante que a imagem fique mais alta mesmo se for pequena */
+  object-fit: cover;  /* faz a imagem preencher o espaço, cortando se necessário */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #41302722;
+  background: #fff;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #20587aee;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0.8;
+  transition: background 0.2s;
+}
+.carousel-btn:hover {
+  background: #20587a;
+}
+.carousel-btn.prev { left: 8px; }
+.carousel-btn.next { right: 8px; }
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 8px;
+}
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carousel-dot.active {
+  background: #20587a;
+}
+@media (max-width: 700px) {
+  .carousel-container {
+    max-width: 98vw;
+  }
+  .carousel img {
+    max-height: 180px;
+  }
+}
     </style>
     <script>
       function toggleCardContent(event) {
@@ -445,6 +516,89 @@
           allowfullscreen>
         </iframe>
       </div>
+
+      <!-- Carrossel de fotos do projeto (coloque aqui, após o vídeo e antes das perguntas) -->
+      <div class="carousel-container" style="max-width: 1042px; width: 100%; margin: 32px auto;">
+  <div class="carousel">
+    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+    <img id="carousel-img" src="carrosel de fotos/1000243068.jpg" alt="Foto do Projeto" />
+    <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+  </div>
+  <div class="carousel-dots" id="carousel-dots"></div>
+</div>
+
+<style>
+.carousel-container {
+  width: 100%;
+  max-width: 948px;
+  margin: 32px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel img {
+  width: 100%;
+  max-height: 600px; /* aumente este valor para preencher mais o container */
+  min-height: 320px; /* opcional: garante que a imagem fique mais alta mesmo se for pequena */
+  object-fit: cover;  /* faz a imagem preencher o espaço, cortando se necessário */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #41302722;
+  background: #fff;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #20587aee;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0.8;
+  transition: background 0.2s;
+}
+.carousel-btn:hover {
+  background: #20587a;
+}
+.carousel-btn.prev { left: 8px; }
+.carousel-btn.next { right: 8px; }
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 8px;
+}
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carousel-dot.active {
+  background: #20587a;
+}
+@media (max-width: 1000px) {
+  .carousel-container {
+    max-width: 98vw;
+  }
+  .carousel img {
+    max-height: 240px;
+  }
+}
+</style>
 
       <section class="card-container">
         <div class="card">
@@ -525,6 +679,7 @@ Essa ampla compatibilidade garante flexibilidade e facilidade de uso, independen
           </div>
         </div>
       </section>
+
     </main>
    <footer>
   <div class="container" style="background: #413027;  color: #fff; padding: 10px 15px;">
@@ -571,3 +726,49 @@ Essa ampla compatibilidade garante flexibilidade e facilidade de uso, independen
     </div>
   </div>
 </footer>
+<script>
+const carouselImages = [
+  "carrosel de fotos/1000243068.jpg",
+  "carrosel de fotos/1000243067.jpg",
+  "carrosel de fotos/1000243066.jpg",
+  "carrosel de fotos/1000243065.jpg",
+  "carrosel de fotos/1000243064.jpg"
+];
+let carouselIndex = 0;
+
+function showCarouselImg(idx) {
+  const img = document.getElementById('carousel-img');
+  img.src = carouselImages[idx];
+  // Atualiza dots
+  const dots = document.querySelectorAll('.carousel-dot');
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === idx);
+  });
+}
+
+function moveCarousel(dir) {
+  carouselIndex = (carouselIndex + dir + carouselImages.length) % carouselImages.length;
+  showCarouselImg(carouselIndex);
+}
+
+function createCarouselDots() {
+  const dotsContainer = document.getElementById('carousel-dots');
+  dotsContainer.innerHTML = '';
+  carouselImages.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => {
+      carouselIndex = i;
+      showCarouselImg(i);
+    };
+    dotsContainer.appendChild(dot);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  createCarouselDots();
+  showCarouselImg(0);
+});
+</script>
+  </body>
+</html>
